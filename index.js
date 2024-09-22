@@ -13,17 +13,23 @@ const fs = require("fs-extra");
 const { Boom } = require("@hapi/boom");
 const PORT = process.env.PORT ||  5000
 const MESSAGE = process.env.MESSAGE ||  `
-╔════◇
-║ *『 WAOW YOU CHOOSE SUHAIL-MD 』*
-║ _You complete first step to making Bot._
-╚════════════════════════╝
-╔═════◇
-║  『••• 𝗩𝗶𝘀𝗶𝘁 𝗙𝗼𝗿 𝗛𝗲𝗹𝗽 •••』
-║ *Ytube:* _youtube.com/Romekxd9
-║ *Owner:* _https://wa.me/919341378016
-║ *Note :*_Don't provide your SESSION_ID to_
-║ _anyone otherwise that can access chats_
-╚════════════════════════╝
+*┏━━━━━━━━━━━━━━*
+*┃𝗪𝗔𝗧𝗦𝗢𝗡-XD-7 SESSION IS*
+*┃SUCCESSFULLY*
+*┃CONNECTED ✅🔥*
+*┗━━━━━━━━━━━━━━━*
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+*❶ || Creator = RomekTricks Official👨🏻‍💻*
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+*❷ || WhatsApp Channel =* https://whatsapp.com/channel/0029VajjzuB9sBI890YffB1b
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+*❸ || Owner =* https://wa.me/+263781330745
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+*❹ || Repo =* https://github.com/WATSON-XD2/Watson-MD-Bot-V7
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+*❺ || You Tube =* https://youtube.com/@
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+*🧚‍♀️ᴄʀᴇᴀᴛᴇᴅ ʙʏ ©𝘄𝗮𝘁𝘀𝗼𝗻-xd-v7 ᴏꜰꜰɪᴄɪᴀʟ💗*
 `
 
 
