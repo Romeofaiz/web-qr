@@ -1,130 +1,94 @@
-
-const express = require("express");
-const app = express();
-
-
-
-
-
-const pino = require("pino");
-let { toBuffer } = require("qrcode");
-const path = require('path');
-const fs = require("fs-extra");
-const { Boom } = require("@hapi/boom");
-const PORT = process.env.PORT ||  5000
-const MESSAGE = process.env.MESSAGE ||  `
-*┏━━━━━━━━━━━━━━*
-*┃𝗪𝗔𝗧𝗦𝗢𝗡-XD-7 SESSION IS*
-*┃SUCCESSFULLY*
-*┃CONNECTED ✅🔥*
-*┗━━━━━━━━━━━━━━━*
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-*❶ || Creator = RomekTricks Official👨🏻‍💻*
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-*❷ || WhatsApp Channel =* https://whatsapp.com/channel/0029VajjzuB9sBI890YffB1b
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-*❸ || Owner =* https://wa.me/+263781330745
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-*❹ || Repo =* https://github.com/WATSON-XD2/Watson-MD-Bot-V7
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-*❺ || You Tube =* https://youtube.com/@
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-*🧚‍♀️ᴄʀᴇᴀᴛᴇᴅ ʙʏ ©𝘄𝗮𝘁𝘀𝗼𝗻-xd-v7 ᴏꜰꜰɪᴄɪᴀʟ💗*
-`
-
-
-
-
-
-
-
-
-
-
-
-if (fs.existsSync('./auth_info_baileys')) {
-    fs.emptyDirSync(__dirname + '/auth_info_baileys');
-  };
-  
-  app.use("/", async(req, res) => {
-
-  const { default: SuhailWASocket, useMultiFileAuthState, Browsers, delay,DisconnectReason, makeInMemoryStore, } = require("@whiskeysockets/baileys");
-  const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
-  async function SUHAIL() {
-    const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/auth_info_baileys')
-    try {
-      let Smd =SuhailWASocket({ 
-        printQRInTerminal: false,
-        logger: pino({ level: "silent" }), 
-        browser: Browsers.baileys("Desktop"),
-        auth: state 
-        });
-
-
-      Smd.ev.on("connection.update", async (s) => {
-        const { connection, lastDisconnect, qr } = s;
-        if (qr) { res.end(await toBuffer(qr)); }
-
-
-        if (connection == "open"){
-          await delay(3000);
-          let user = Smd.user.id;
-
-
-//===========================================================================================
-//===============================  SESSION ID    ===========================================
-//===========================================================================================
-
-          let CREDS = fs.readFileSync(__dirname + '/auth_info_baileys/creds.json')
-          var Scan_Id = Buffer.from(CREDS).toString('base64')
-         // res.json({status:true,Scan_Id })
-          console.log(`
-====================  SESSION ID  ==========================                   
-SESSION-ID ==> ${Scan_Id}
--------------------   SESSION CLOSED   -----------------------
-`)
-
-
-          let msgsss = await Smd.sendMessage(user, { text:  Scan_Id });
-          await Smd.sendMessage(user, { text: MESSAGE } , { quoted : msgsss });
-          await delay(1000);
-          try{ await fs.emptyDirSync(__dirname+'/auth_info_baileys'); }catch(e){}
-
-
-        }
-
-        Smd.ev.on('creds.update', saveCreds)
-
-        if (connection === "close") {            
-            let reason = new Boom(lastDisconnect?.error)?.output.statusCode
-            // console.log("Reason : ",DisconnectReason[reason])
-            if (reason === DisconnectReason.connectionClosed) {
-              console.log("Connection closed!")
-             // SUHAIL().catch(err => console.log(err));
-            } else if (reason === DisconnectReason.connectionLost) {
-                console.log("Connection Lost from Server!")
-            //  SUHAIL().catch(err => console.log(err));
-            } else if (reason === DisconnectReason.restartRequired) {
-                console.log("Restart Required, Restarting...")
-              SUHAIL().catch(err => console.log(err));
-            } else if (reason === DisconnectReason.timedOut) {
-                console.log("Connection TimedOut!")
-             // SUHAIL().catch(err => console.log(err));
-            }  else {
-                console.log('Connection closed with bot. Please run again.');
-                console.log(reason)
-              //process.exit(0)
-            }
-          }
-
-
-
-      });
-    } catch (err) {
-        console.log(err);
-       await fs.emptyDirSync(__dirname+'/auth_info_baileys'); 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GiftedMDv2Session Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: black;
     }
-  }
+
+    .btn {
+      --color: #e5f5f1;
+      --color2: rgb(0, 0, 0);
+      width: 200px;
+      padding: 0.8em 1.75em;
+      background-color: green;
+      border-radius: 6px;
+      border: .3px solid var(--color);
+      transition: .5s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      z-index: 1;
+      font-weight: 300;
+      font-size: 17px;
+      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      text-transform: uppercase;
+      color: var(--color);
+      margin-bottom: 24px;
+    }
+
+    .btn::after, .btn::before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      transform: skew(90deg) translate(-50%, -50%);
+      position: absolute;
+      inset: 50%;
+      left: 25%;
+      z-index: -1;
+      transition: .5s ease-out;
+      background-color: var(--color);
+    }
+
+    .btn::before {
+      top: -50%;
+      left: -25%;
+      transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+    }
+
+    .btn:hover::before {
+      transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+    }
+
+    .btn:hover::after {
+      transform: skew(45deg) translate(-50%, -50%);
+    }
+
+    .btn:hover {
+      color: var(--color2);
+    }
+
+    .btn:active {
+      filter: brightness(.7);
+      transform: scale(.98);
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="window.open(`https://session.giftedtechnexus.co.ke/qr`)" class="btn">QR Code</button>
+  <button onclick="window.open(`https://session.giftedtechnexus.co.ke/pair`)" class="btn">Pair Code</button>
+  <button onclick="window.open(`https://github.com/Giftedmaurice/gifted-mdV2`)" class="btn">Bot Repo</button>
+  <button onclick="window.open(`https://github.com/Giftedmaurice/gifted-bot-md-plugins`)" class="btn">Plugins</button>
+  <button onclick="window.open(`https://wa.me/message/NHCZC5DSOEUXB1`)" class="btn">Contact Me</button>
+  <button onclick="window.open(`https://chat.whatsapp.com/L0ctUUVLlsrFYwBHApKfew`)" class="btn">Wa Group</button>
+  <button onclick="window.open(`https://whatsapp.com/channel/0029VaJmfmTDJ6H7CmuBss0o`)" class="btn">Wa Channel</button>
+  <button onclick="window.open(`https://instagram.com/giftedtechnexus`)" class="btn">Instagram</button>
+  <button onclick="window.open(`https://youtube.com/@giftedtechnexus`)" class="btn">Youtube</button>
+  
+
+</body>
+</html>
 
 
 
@@ -133,17 +97,29 @@ SESSION-ID ==> ${Scan_Id}
 
 
 
-  SUHAIL().catch(async(err) => {
-    console.log(err)
-    await fs.emptyDirSync(__dirname+'/auth_info_baileys'); 
+  const express = require('express');
+const app = express();
+__path = process.cwd()
+const bodyParser = require("body-parser");
+const PORT = process.env.PORT || 8000;
+let server = require('./qr'),
+    code = require('./pair');
+require('events').EventEmitter.defaultMaxListeners = 500;
+app.use('/qr', server);
+app.use('/code', code);
+app.use('/pair',async (req, res, next) => {
+res.sendFile(__path + '/pair.html')
+})
+app.use('/',async (req, res, next) => {
+res.sendFile(__path + '/main.html')
+})
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.listen(PORT, () => {
+    console.log(`
+Don't Forgot To Give Star
 
+ Server running on http://localhost:` + PORT)
+})
 
-    //// MADE WITH 
-
-});
-
-
-  })
-
-
-app.listen(PORT, () => console.log(`App listened on port http://localhost:${PORT}`));
+module.exports = app
